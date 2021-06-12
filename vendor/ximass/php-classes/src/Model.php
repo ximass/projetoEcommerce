@@ -23,24 +23,20 @@ class Model {
 
 		$method = substr($name, 0, 3);
 		$fieldName = substr($name, 3, strlen($name));
-
-		if (in_array($fieldName, $this->fields))
+	
+		switch ($method)
 		{
-			
-			switch ($method)
-			{
+			case "get":
+				return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;
+				break;
 
-				case "get":
-					return $this->values[$fieldName];
-					break;
-
-				case "set":
-					$this->values[$fieldName] = $args[0];
-					break;
-
-			}
+			case "set":
+				$this->values[$fieldName] = $args[0];
+				break;
 
 		}
+
+		
 
 	}
 
